@@ -8,9 +8,8 @@
 int N_LEDS = 80;
 int mid = N_LEDS / 2;
 int aLEDNum1 = N_LEDS;
-int aLEDNum2 = 0;
 
-pinduino pd(aLEDNum1, aLEDNum2, "Nano");
+pinduino pd(aLEDNum1, "Nano");
 
 int attract_on = 1;
 unsigned long timeLastEvent = 0;      // time last event was last triggered
@@ -22,7 +21,7 @@ void setup()
 {
   Serial.begin(115200);
   pd.adrLED1()->clear();
-  pd.adrLED2()->clear();
+  //pd.adrLED2()->clear();
   pd.pinState()->reset();
 }
 
@@ -100,7 +99,7 @@ void checkPinStates()
   {
     timeLastEvent = millis();
     pd.adrLED1()->clear();
-    pd.adrLED2()->clear();
+    //pd.adrLED2()->clear();
     pd.pinState()->reset();
     trigger = 0;
     attract_on = 0;
@@ -115,8 +114,8 @@ void checkPinStates()
 
 void backgroundChase()
 {
-  pd.adrLED1()->sparkle(attractColor, 20, 30);
-  pd.adrLED2()->sparkle(attractColor, 20, 30);
+  pd.adrLED1()->sparkle(attractColor, 20);
+  //pd.adrLED2()->sparkle(attractColor, 20);
   if (random(250) == 0)
   {
     if (attractColor == "yellow")
